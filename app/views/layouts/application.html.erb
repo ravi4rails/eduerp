@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eduerp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if user_signed_in? %>
+  <% if current_user.role == 'admin' %>
+    <%= render :template => 'home/admin_dashboard'%>
+  <% elsif current_user.role == 'employee' %>
+    <%= render :template => 'home/employee_dashboard'%>
+  <% elsif current_user.role == 'student' %>
+    <%= render :template => 'home/student_dashboard'%>
+  <% end %>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>
